@@ -104,6 +104,32 @@ uv run python evaluator.py
 
 ---
 
+## CI/CD with GitHub Actions
+
+Two automated workflows run on every push:
+
+### CI — Syntax Check
+Runs on **every push** to `main`. Verifies that all `.py` files have no syntax errors.
+- ✅ Green = code is valid
+- ❌ Red = syntax error found, with exact file and line number
+
+### Retrieval Evaluation
+Runs automatically when you change `answer.py`, `ingest.py`, `knowledge-base/` or `evaluation/`. Rebuilds the vector database and measures retrieval quality across 150 test questions.
+
+**How to use it:** change a parameter (e.g. `RETRIEVAL_K` in `answer.py`), push, and GitHub tells you if retrieval improved.
+
+**Current benchmark results (RETRIEVAL_K=15):**
+
+| Metric | Value | Status |
+|--------|-------|--------|
+| Avg MRR | 0.7624 | Acceptable |
+| Avg nDCG | 0.7670 | Acceptable |
+| Coverage | 93.5% | Good ✅ |
+
+Results are saved as a downloadable artifact (`evaluation/results.json`) in the Actions tab for every run, enabling historical comparison across experiments.
+
+---
+
 ## Adding your own knowledge base
 
 1. Place `.md` files inside `knowledge-base/` organized by category (subfolder = `doc_type` metadata)
