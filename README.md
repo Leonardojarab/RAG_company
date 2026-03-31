@@ -1,4 +1,4 @@
-# RAG Company — Intelligent Document Assistant
+![RAG Company Banner](image/rag_company.png)
 
 A production-ready RAG (Retrieval-Augmented Generation) system that lets you chat with your company's knowledge base using natural language. Built with LangChain, ChromaDB, and Gradio.
 
